@@ -1,5 +1,6 @@
  //adding some code that calculates the score giving feedback in form of a percentage
  // code that fixes bug with percentage
+ //this code is now validated and finished
 var questions = [
     "1. Er du enig i at FrP ønsker å gi skattefordeler til små og mellomstore bedrifter?",
     "2. Er du enig i at FrP ønsker å redusere byråkratiet i offentlig sektor?",
