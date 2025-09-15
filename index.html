@@ -1,29 +1,38 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Valgomat</title>
-        <link rel="stylesheet" href="styles.css">
-        <script src="script.js" defer></script> 
-    </head>
-    <body> 
-        <div>
-            <h1>Velkomen till Valgomat</h1>
-
-            <input type="text" id="questions" value="Trykk på knappen nedenfor for å starte." readonly>
-
-            <button id="nextButton">Start</button>
-
-            <div id="options"></div>
-
-            <div id="result"></div>
-
-            <button id="restartButton" style="display:none;">Start på nytt</button>
-            
-            <div id="progress"></div>
-
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valgomat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Valgomat/h1>
+        
+        <div id="question-container">
+            <p id="progress"></p>
+            <p id="question-text"></p>
+            <form id="answer-form">
+                <label><input type="radio" name="answer" value="Helt uenig"> Helt uenig</label><br>
+                <label><input type="radio" name="answer" value="Litt uenig"> Litt uenig</label><br>
+                <label><input type="radio" name="answer" value="Nøytral"> Nøytral</label><br>
+                <label><input type="radio" name="answer" value="Litt enig"> Litt enig</label><br>
+                <label><input type="radio" name="answer" value="Helt enig"> Helt enig</label><br>
+                
+                <div class="buttons">
+                    <button type="button" id="prevButton">Tilbake</button>
+                    <button type="submit" id="nextButton">Neste</button>
+                </div>
+            </form>
         </div>
-    </body>
-    </html>
+        
+        <div id="result-container" style="display: none;">
+            <p>Din score: <span id="score"></span></p>
+            <button id="restartButton">Start på nytt</button>
+        </div>
+    </div>
 
+    <script src="script.js"></script>
+</body>
+</html>
