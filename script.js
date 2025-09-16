@@ -1,4 +1,4 @@
-const questions = [
+var questions = [
   "Synes du små og mellomstore bedrifter bør få større skattefordeler?",
   "Synes du byråkratiet i offentlig sektor bør reduseres?",
   "Synes du Norge bør styrke forsvaret og øke forsvarsbudsjettet?",
@@ -11,7 +11,7 @@ const questions = [
   "Synes du offentlige utgifter bør reduseres for å balansere budsjettet?"
 ];
 
-const points = {
+var points = {
   "Helt uenig": 0,
   "Litt uenig": 25,
   "Nøytral": 50,
@@ -19,44 +19,64 @@ const points = {
   "Helt enig": 100
 };
 
-let index = 0;           
-let totalScore = 0;       
-let answers = [];         
+var index = 0;
+var totalScore = 0;
+var answers = [];
 
-const questionText = document.getElementById("question-text");
-const progress = document.getElementById("progress");
-const resultBox = document.getElementById("result-container");
-const scoreBox = document.getElementById("score");
-const prevBtn = document.getElementById("prevButton");
-const restartBtn = document.getElementById("restartButton");
+var questionText = document.getElementById("question-text");
+var progress = document.getElementById("progress");
+var resultBox = document.getElementById("result-container");
+var scoreBox = document.getElementById("score");
+var prevBtn = document.getElementById("prevButton");
+var restartBtn = document.getElementById("restartButton");
 
 function load() {
-  
   if (index >= questions.length) {
     showResult();
     return;
   }
 
   questionText.textContent = questions[index];
-  progress.textContent = `Spørsmål ${index + 1} av ${questions.length}`;
+  progress.textContent = "Spørsmål " + (index + 1) + " av " + questions.length;
 
-  document.querySelectorAll('input[name="answer"]').forEach(r => r.checked = false);
-  
-  if (answers[index]) {
-    document.querySelector(`input[value="${answers[index]}"]`).checked = true;
+  var radios = document.getElementsByName("answer");
+  for (var i = 0; i < radios.length; i++) {
+    radios[i].checked = false;
   }
 
-  prevBtn.style.display = index === 0 ? "none" : "inline-block";
+  if (answers[index]) {
+    for (var i = 0; i < radios.length; i++) {
+      if (radios[i].value === answers[index]) {
+        radios[i].checked = true;
+      }
+    }
+  }
+
+  if (index === 0) {
+    prevBtn.style.display = "none";
+  } else {
+    prevBtn.style.display = "inline-block";
+  }
 }
 
-document.getElementById("answer-form").addEventListener("submit", e => {
+var form = document.getElementById("answer-form");
+form.onsubmit = function(e) {
   e.preventDefault();
-  let selected = document.querySelector('input[name="answer"]:checked');
+
+  var selected = null;
+  var radios = document.getElementsByName("answer");
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].checked) {
+      selected = radios[i];
+      break;
+    }
+  }
+
   if (!selected) {
     alert("Velg et svar.");
     return;
   }
-  
+
   if (answers[index]) {
     totalScore -= points[answers[index]];
   }
@@ -66,29 +86,28 @@ document.getElementById("answer-form").addEventListener("submit", e => {
 
   index++;
   load();
-});
+};
 
-prevBtn.addEventListener("click", () => {
+prevBtn.onclick = function() {
   if (index > 0) {
     index--;
     load();
   }
-});
+};
 
 function showResult() {
-  const percent = Math.round(totalScore / (questions.length * 100) * 100);
+  var percent = Math.round(totalScore / (questions.length * 100) * 100);
   resultBox.style.display = "block";
   scoreBox.textContent = percent + "%";
   document.getElementById("question-container").style.display = "none";
 }
 
-restartBtn.addEventListener("click", () => {
+restartBtn.onclick = function() {
   index = 0;
   totalScore = 0;
   answers = [];
   document.getElementById("question-container").style.display = "block";
   resultBox.style.display = "none";
   load();
-});
-
+};
 load();

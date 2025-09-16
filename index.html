@@ -14,11 +14,28 @@
             <p id="progress"></p>
             <p id="question-text">Spørsmål kommer her...</p>
             <form id="answer-form">
-                <label><input type="radio" name="answer" value="Helt uenig"> Helt uenig</label><br>
-                <label><input type="radio" name="answer" value="Litt uenig"> Litt uenig</label><br>
-                <label><input type="radio" name="answer" value="Nøytral"> Nøytral</label><br>
-                <label><input type="radio" name="answer" value="Litt enig"> Litt enig</label><br>
-                <label><input type="radio" name="answer" value="Helt enig"> Helt enig</label><br>
+                <div class="answers">
+                <label>
+                    <input type="radio" name="answer" value="Helt uenig">
+                    Helt uenig
+                </label>
+                <label>
+                    <input type="radio" name="answer" value="Litt uenig">
+                    Litt uenig
+                </label>
+                <label>
+                    <input type="radio" name="answer" value="Nøytral">
+                    Nøytral
+                </label>
+                <label>
+                    <input type="radio" name="answer" value="Litt enig">
+                    Litt enig
+                </label>
+                <label>
+                    <input type="radio" name="answer" value="Helt enig">
+                    Helt enig
+                    </label>
+                </div>
                 
                 <div class="buttons">
                     <button type="button" id="prevButton">Tilbake</button>
@@ -29,7 +46,9 @@
         
         <div id="result-container" style="display: none;">
             <p>Din score: <span id="score"></span></p>
+            <div class="buttons">
             <button id="restartButton">Start på nytt</button>
+            </div>
         </div>
     </div>
 
